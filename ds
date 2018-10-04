@@ -1,10 +1,10 @@
 # D-Form
 Discussion form
 Various sampling techiniques .which is suitable for which scenario
-when to use gini ,entropy,information gain,gain ratio
+
 Regularization techniques
 Varius probability distributions
 more about PCA
-Model evaluation for regression models
+
 more about bias vs variance trade off
 regular expression in python/pandas
