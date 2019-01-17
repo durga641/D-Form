@@ -1,0 +1,131 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Jan  9 12:10:20 2019
+
+@author: vuppuluri
+"""
+
+import numpy as np
+import sys
+
+## ASSSIGNMENT 1 :Import numpy as np and see the version ###########
+
+print(np.version.version)
+
+
+## ASSSIGNMENT 2 :Create a 1D array of numbers from 0 to 9 ###########
+
+id_array=np.array(range(0,10,1))
+id_array=np.arange(0,10,1)
+
+
+## ASSSIGNMENT 3 :Create a 3Ã—3 numpy array of all Trueâ€™s ###########
+
+
+array1=np.arange(0,9,1).reshape(3,3)
+array2=array1<10
+print (array2)
+
+#Alternate solutions:
+    np.full((3,3),True,dtype=bool) 
+    np.ones((3,3),dtype=bool)
+    np.zeros((3,3),dtype=bool)   ### creates all flse
+    
+
+## ASSSIGNMENT 4 Extract all odd numbers from arr###########
+
+array1=np.arange(1,20,1)
+array2=array1%2
+
+for element in array1:
+    if element % 2 ==1 :
+        array2.append(element)
+        
+#alternate solution :
+    
+    array1[array1 % 2 == 1]
+        
+
+## ASSSIGNMENT 5 :Replace all odd numbers in arr with -1 ###########
+
+array1=np.arange(1,20,1)
+cnt=len(array1)
+for ind in range(0,cnt,1):
+    if array1[ind] % 2 ==1 :
+        array1[ind]=-1
+        
+        
+#alternate solution :
+        array1[array1%2 == 1] =-1
+        
+    
+## ASSSIGNMENT 6 :Replace all odd numbers in arr with -1 without changing arr ###########
+      arr = np.arange(10)
+out = np.where(arr % 2 == 1, -1, arr)  
+
+## ASSSIGNMENT 7 : Convert a 1D array to a 2D array with 2 rows
+
+array=np.arange(10)
+array.reshape(2,5)
+array.reshape(2,-1)  ### -1 automatically detects number of columns
+
+
+## ASSSIGNMENT 8 tack arrays a and b vertically:
+
+a = np.arange(10).reshape(2,-1)
+b = np.repeat(1, 10).reshape(2,-1)
+
+np.concatenate((a,b),axis=0)
+
+#alternate solution:
+    np.vstack([a, b])
+
+## ASSSIGNMENT 9 Stack the arrays a and b horizontally. :
+
+a = np.arange(10).reshape(2,-1)
+
+b = np.repeat(1, 10).reshape(2,-1)
+
+np.concatenate((a,b),axis=1)
+#alternate solution :
+    np.hstack([a, b])
+    
+    
+    
+## ASSSIGNMENT 10 Create the following pattern without hardcoding. Use only numpy functions and the below input array a. :
+
+Input:
+
+a = np.array([1,2,3])
+Desired Output:
+
+#> array([1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3])
+ b=[]   
+  for element in a :
+      b.extend(np.repeat(element,3))
+b.extend(np.repeat(a,3))
+    
+alternate solution :
+    np.concatenate((np.repeat(a,3),np.tile(a, 3)),axis=0)
+    
+    
+    
+ 
+    
+
+## ASSSIGNMENT 11 Get the common items between a and b :
+a = np.array([1,2,3,2,3,4,3,4,5,6])
+b = np.array([7,2,10,2,7,4,9,4,9,8])
+
+np.intersect1d(a,b)
+
+## ASSSIGNMENT 12 :
+
+
+## ASSSIGNMENT 6 :
+
+## ASSSIGNMENT 6 :
+
+
+## ASSSIGNMENT 6 :    
+      
