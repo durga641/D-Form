@@ -119,13 +119,140 @@ b = np.array([7,2,10,2,7,4,9,4,9,8])
 
 np.intersect1d(a,b)
 
-## ASSSIGNMENT 12 :
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Jan 23 20:58:04 2019
+
+@author: Venkat Durga Rao
+"""
+
+ 
+
+import numpy as np
 
 
-## ASSSIGNMENT 6 :
+############# ASSIGNMENT 12 :From array a remove all items present in array b
 
-## ASSSIGNMENT 6 :
+a = np.array([1,2,3,4,5])
+b = np.array([5,6,7,8,9])
+
+np.intersect1d(a,b)  #### like intersect in sql
+np.setdiff1d(a,b)  ### like minus in sql
 
 
-## ASSSIGNMENT 6 :    
+################  ASSIGM=NMENT 13 :Get the positions where elements of a and b match
+
+a = np.array([1,2,3,2,3,4,3,4,5,6])
+b = np.array([7,2,10,2,7,4,9,4,9,8])
+
+np.where(a==b)  ####  where class returns the position of index 
+np.where(a<5)
+
+######  ASSIGNMENT 14 Get all items between 5 and 10 from a.
+
+a = np.array([2, 6, 1, 9, 10, 3, 27])
+
+
+a[np.where((a >= 5) & (a <= 10))]
+
+
+# Method 3: (thanks loganzk!)
+a[(a >= 5) & (a <= 10)]
+
+##### ASSIGNMENT 15Convert the function maxx that works on two scalars, to work on two arrays.
+
+def maxx(x, y):
+    """Get the maximum of two items"""
+    
+    if x >= y:
+        return x
+    else:
+        return y
+
+maxx(1, 5)
+#> 5
+
+a = np.array([5, 7, 9, 8, 6, 4, 5])
+b = np.array([6, 3, 4, 8, 9, 7, 1])
+
+pair_max=np.vectorize(maxx)
+pair_max(a, b)
+
+###########assignment 16 :Swap columns 1 and 2 in the array arr.
+arr = np.arange(9).reshape(3,3)
+arr[:,[1,0,2]]
+
+######3  assignment 17 :Swap rows 1 and 2 in the array arr:
+arr = np.arange(9).reshape(3,3)
+arr[[1,0,2],:]
+
+############# assignment 18 Reverse the rows of a 2D array arr.
+
+arr = np.arange(9).reshape(3,3)
+
+## Method 1 
+arr[np.arange(2,-1,-1),:]
+## Method 2 
+arr[::-1]
+
+#### assignment 19 Reverse the columns of a 2D array arr.
+
+arr = np.arange(9).reshape(3,3)
+
+# Solution
+arr[:, ::-1]
+
+arr[:,np.arange(2,-1,-1)]
+
+####Assignment 20:Create a 2D array of shape 5x3 to contain random decimal numbers between 5 and 10.
+
+np.random.randint(low=5,high=10,size=(5,3))
+np.random.uniform(5,10,size=(5,3))
+
+
+#### assignment 21 :Print or show only 3 decimal places of the numpy array rand_arr.
+
+rand_arr=np.random.random(size=(5,3))
+np.set_printoptions(precision=3)
+rand_arr
+
+####### assignment 22 :Pretty print rand_arr by suppressing the scientific notation (like 1e10)
+
+
+np.random.seed(100)
+rand_arr = np.random.random([3,3])/1e3
+rand_arr
+
+np.set_printoptions(suppress=True)
+rand_arr
+
+
+#### assignment 23 :Limit the number of items printed in python numpy array a to a maximum of 6 elements.
+
+
+#> array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14])
+
+np.set_printoptions(threshold=2)
+a = np.arange(15)
+a
+
+######## assignment 24 :Print the full numpy array a without truncating.
+
+np.set_printoptions(threshold=np.nan)
+a = np.arange(15)
+a
+
+
+################ assignment 25 :Import the iris dataset keeping the text intact.
+
+
+
+
+
+
+
+
+
+
+
       
