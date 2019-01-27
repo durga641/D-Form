@@ -571,6 +571,253 @@ array_of_arrays
 arr_2d = np.concatenate(array_of_arrays)
 
 
+############  asssignment 51 :Compute the one-hot encodings (dummy binary variables for each unique value in the array)
+
+np.random.seed(101)
+arr=np.random.randint(1,4,6)
+
+def one_hot_encodings(arr):
+    uniqs = np.unique(arr)
+    out = np.zeros((arr.shape[0], uniqs.shape[0]))
+    for i, k in enumerate(arr):
+        out[i, k-1] = 1
+    return out
+
+one_hot_encodings(arr)
+#
+
+#### assignment 52 :Create row numbers grouped by a categorical variable. Use the following sample from iris species as input.
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+species = np.genfromtxt(url, delimiter=',', dtype='str', usecols=4)
+np.random.seed(100)
+species_small = np.sort(np.random.choice(species, size=20))
+
+print([i for val in np.unique(species_small) for i, grp in enumerate(species_small[species_small==val])])
+
+##### assignment 53 :Create group ids based on a given categorical variable. Use the following sample from iris species as input.s
+species = np.genfromtxt(url, delimiter=',', dtype='str', usecols=4)
+species_small = np.sort(np.random.choice(species, size=20))
+species_small
+
+i=0
+group_id=0
+list1=[]
+for species  in  species_small:
+    if i==0 :
+        list1.append[group_id]
+        i=i+1;
+        
+    elif species_small[i] ==  species_small[i+1]:
+        list1.append[group_id]
+        i=i+1
+    else:
+        list1.append[group_id+1]
+        i=i+1
+        
+############# assignment 54 : Create the ranks for the given numeric array a.
+        
+        np.random.seed(10)
+a = np.random.randint(20, size=10)
+
+
+a.argsort().argsort()
+
+######## assignment 55:How to rank items in a multidimensional array using numpy?
+
+np.random.seed(10)
+a = np.random.randint(20, size=[2,5])
+print(a)
+
+print(a.ravel().argsort().argsort().reshape(a.shape))
+
+#### assignment 56 :How to find the maximum value in each row of a numpy array 2d?
+
+
+np.random.seed(100)
+a = np.random.randint(1,10, [5,3])
+a
+
+# Solution 1
+np.amax(a, axis=1)
+
+# Solution 2
+np.apply_along_axis(np.max, arr=a, axis=1)
+
+###### assignment 57 :Compute the min-by-max for each row for given 2d numpy array.
+
+np.random.seed(100)
+a = np.random.randint(1,10, [5,3])
+
+np.amin(a,axis=1)
+
+alternate solution :
+    np.apply_along_axis(lambda x: np.min(x)/np.max(x), arr=a, axis=1)
+#> array([ 0.44444444,  0.125     ,  0.5       ,  1.        ,  0.11111111])
+    
+    #### assignment 58 :Find the duplicate entries (2nd occurrence onwards) in the given numpy array and mark them as True. First time occurrences should be False.
+
+
+    np.random.seed(100)
+a = np.random.randint(0, 5, 10)
+
+## Solution
+# There is no direct function to do this as of 1.13.3
+
+# Create an all True array
+out = np.full(a.shape[0], True)
+
+# Find the index positions of unique elements
+unique_positions = np.unique(a, return_index=True)[1]
+
+# Mark those positions as False
+out[unique_positions] = False
+
+print(out)
+### # assignment 59 :Find the mean of a numeric column grouped by a categorical column in a 2D numpy array
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+iris = np.genfromtxt(url, delimiter=',', dtype='object')
+names = ('sepallength', 'sepalwidth', 'petallength', 'petalwidth', 'species')
+
+
+
+
+# Solution
+# No direct way to implement this. Just a version of a workaround.
+numeric_column = iris[:, 1].astype('float')  # sepalwidth
+grouping_column = iris[:, 4]  # species
+
+# List comprehension version
+[[group_val, numeric_column[grouping_column==group_val].mean()] for group_val in np.unique(grouping_column)]
+
+# For Loop version
+output = []
+for group_val in np.unique(grouping_column):
+    output.append([group_val, numeric_column[grouping_column==group_val].mean()])
+
+
+####Assignment 60 :How to convert a PIL image to numpy array?
+    
+    from io import BytesIO
+from PIL import Image
+import PIL, requests
+
+# Import image from URL
+URL = 'https://upload.wikimedia.org/wikipedia/commons/8/8b/Denali_Mt_McKinley.jpg'
+response = requests.get(URL)
+
+# Read it as Image
+I = Image.open(BytesIO(response.content))
+
+# Optionally resize
+I = I.resize([150,150])
+
+# Convert to numpy array
+arr = np.asarray(I)
+
+# Optionaly Convert it back to an image and show
+im = PIL.Image.fromarray(np.uint8(arr))
+Image.Image.show(im)
+
+
+#########assignment 61:Drop all nan values from a 1D numpy array
+
+a=np.array([1,2,3,np.nan,5,6,7,np.nan])
+
+np.delete(a,np.nan)
+
+a[~np.isnan(a)]
+
+##################  assignment 62 :Compute the euclidean distance between two arrays a and b.
+
+a = np.array([1,2,3,4,5])
+b = np.array([4,5,6,7,8])
+
+dist = np.linalg.norm(a-b)
+########3 assignment 63 :Find all the peaks in a 1D numpy array a. Peaks are points surrounded by smaller values on both sides.
+
+a = np.array([1, 3, 7, 1, 2, 6, 0, 1])
+i=1
+cnt=len(a)-2
+while (i<=cnt) :
+    if a[i] > a[i-1] and a[i] < a[i+1]:
+        print (a[i])
+        i=i+1
+        
+        
+####### assignment 64 :Subtract the 1d array b_1d from the 2d array a_2d, such that each item of b_1d subtracts from respective row of a_2d.
+        
+        
+ a_2d = np.array([[3,3,3],[4,4,4],[5,5,5]])
+b_1d = np.array([1,1,1])
+i=1
+while  (i <= a_2d.shape[0]):
+    print(a_2d[i-1]-b_1d)
+    i=i+1
+
+#############  assignment 65 :Find the index of 5th repetition of number 1 in x.
+
+x = np.array([1, 2, 1, 1, 3, 4, 3, 1, 1, 2, 1, 1, 2])
+
+(np.where(x==1))[0][4]
+
+
+#########  assignment 66 :Convert numpy's datetime64 object to datetime's datetime object
+
+# Input: a numpy datetime64 object
+dt64 = np.datetime64('2018-02-25 22:10:10')
+
+dt64.astype(datetime)
+
+
+########  assignment 67 :Compute the moving average of window size 3, for the given 1D array.
+
+np.random.seed(100)
+Z = np.random.randint(10, size=10)
+
+def moving_average(a, n=3) :
+    ret = np.cumsum(a, dtype=float)
+    ret[n:] = ret[n:] - ret[:-n]
+    return ret[n - 1:] / n
+
+np.random.seed(100)
+Z = np.random.randint(10, size=10)
+print('array: ', Z)
+# Method 1
+moving_average(Z, n=3).round(2)
+
+########## assignment 68 :Create a numpy array of length 10, starting from 5 and has a step of 3 between consecutive numbers
+
+a=np.arange(5,33,3)
+
+
+########### assignment 69:Given an array of a non-continuous sequence of dates. Make it a continuous sequence of dates, by filling in the missing dates.
+
+dates = np.arange(np.datetime64('2018-02-01'), np.datetime64('2018-02-25'), 2)
+print(dates)
+#> ['2018-02-01' '2018-02-03' '2018-02-05' '2018-02-07' '2018-02-09'
+#>  '2018-02-11' '2018-02-13' '2018-02-15' '2018-02-17' '2018-02-19'
+#>  '2018-02-21' '2018-02-23']
+
+
+def fill_missing_dates (x):
+    cnt=len(dates)
+    i=1
+    start=x[0]
+    for date in dates:
+        if []:
+            
+######### assignment 70 :. From the given 1d array arr, generate a 2d matrix using strides, with a window length of 4 and strides of 2, like [[0,1,2,3], [2,3,4,5], [4,5,6,7]..]
+            
+            def gen_strides(a, stride_len=5, window_len=5):
+    n_strides = ((a.size-window_len)//stride_len) + 1
+    # return np.array([a[s:(s+window_len)] for s in np.arange(0, a.size, stride_len)[:n_strides]])
+    return np.array([a[s:(s+window_len)] for s in np.arange(0, n_strides*stride_len, stride_len)])
+
+print(gen_strides(np.arange(15), stride_len=2, window_len=4))
+
+
 
 
 
