@@ -245,7 +245,330 @@ a
 
 ################ assignment 25 :Import the iris dataset keeping the text intact.
 
+################ assignment 25 :Import the iris dataset keeping the text intact.
 
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+
+iris=np.genfromtxt(url,delimiter=',',dtype=object)
+names = ('sepallength', 'sepalwidth', 'petallength', 'petalwidth', 'species')
+iris
+
+
+########### assignment 26 : extract particular column from one dimensional array of tuples ###
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+
+iris=np.genfromtxt(url,delimiter=',',dtype=None)
+iris.shape
+
+
+
+############3 assignment :28 find the mean of numpy array mean,mode,standard deviation
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+iris = np.genfromtxt(url, delimiter=',', dtype='object')
+sepallength = np.genfromtxt(url, delimiter=',', dtype='float', usecols=[0,1])
+
+
+np.mean(sepallength[:,0])
+np.median(sepallength)
+np.std(sepallength)
+
+##############3  assignment 29 . Create a normalized form of iris's sepallength whose values
+### range exactly between 0 and 1 so that the minimum has value 0 and maximum has value 1.
+
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+iris = np.genfromtxt(url, delimiter=',', dtype='object')
+sepallength = np.genfromtxt(url, delimiter=',', dtype='float', usecols=[0])
+
+sepallength=sepallength/np.max(sepallength)
+
+
+######### assignment 30 : compute the softmax score 
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+sepallength = np.genfromtxt(url, delimiter=',', dtype='float', usecols=[0])
+
+
+def soft_max(x):
+ e_x = np.exp(x - np.max(x))
+ return e_x / e_x.sum(axis=0)
+
+soft_max(sepallength)
+
+
+####assignment 31 :Find the 5th and 95th percentile of iris's sepallength
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+sepallength = np.genfromtxt(url, delimiter=',', dtype='float', usecols=[0])
+
+np.percentile(sepallength,[5,95])
+
+
+####### assignment 32 :Insert np.nan values at 20 random positions in iris_2d dataset
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+iris_2d = np.genfromtxt(url, delimiter=',', dtype='object')
+iris_2d.shape
+
+list1=np.random.randint(0,149,size=20)
+list1
+
+iris_2d[]
+
+i, j = np.where(iris_2d)
+
+np.random.seed(100)
+iris_2d[np.random.choice((i), 20), np.random.choice((j), 20)] = np.nan
+
+#############3  assignment 33 :Find the number and position of missing values in iris_2d's sepallength (1st column)
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+iris_2d = np.genfromtxt(url, delimiter=',', dtype='float')
+iris_2d[np.random.randint(150, size=20), np.random.randint(4, size=20)] = np.nan
+
+np.isnan(iris_2d[:,0]).sum()  ## no of missing values
+print(np.where(np.isnan(iris_2d)))
+
+############  assignment 34 :Filter the rows of iris_2d that has petallength (3rd column) > 1.5 and
+ sepallength (1st column) < 5.0
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+iris_2d = np.genfromtxt(url, delimiter=',', dtype='float', usecols=[0,1,2,3])
+
+condition = (iris_2d[:, 2] > 1.5) & (iris_2d[:, 0] < 5.0)
+iris_2d[condition]
+
+
+########   assignment 36 : Select the rows of iris_2d that does not have any nan value.
+
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+iris_2d = np.genfromtxt(url, delimiter=',', dtype='float', usecols=[0,1,2,3])
+
+iris_2d[np.random.randint(0,150,size=20),np.random.randint(0,4,size=20)]=np.nan
+
+
+iris_2d[np.sum(np.isnan(iris_2d), axis = 1) == 0]  ###  find the total no of nulls present  in each record and equate to zero
+
+
+#############3 assignment 36 :Find the correlation between SepalLength(1st column) and PetalLength(3rd column) in iris_2d
+#
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+iris_2d = np.genfromtxt(url, delimiter=',', dtype='float', usecols=[0,1,2,3])
+
+
+np.corrcoef(iris_2d[:,0],iris_2d[:,2])
+
+  ###### assignment 37 :Find out if iris_2d has any missing values.
+  
+  url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+iris_2d = np.genfromtxt(url, delimiter=',', dtype='float', usecols=[0,1,2,3])
+
+
+
+np.isnan(iris_2d).any()
+
+#########################  assignment 38 :Replace all ccurrences of nan with 0 in numpy array
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+iris_2d = np.genfromtxt(url, delimiter=',', dtype='float', usecols=[0,1,2,3])
+iris_2d[np.random.randint(150, size=20), np.random.randint(4, size=20)] = np.nan
+
+iris_2d[np.where(np.isnan(iris_2d))]=0
+iris_2d[np.isnan(iris_2d)]=0
+
+np.isnan(iris_2d).any()
+
+
+#################333  assignment 39 :Find the unique values and the count of unique values in iris's species
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+iris = np.genfromtxt(url, delimiter=',', dtype='object')
+names = ('sepallength', 'sepalwidth', 'petallength', 'petalwidth', 'species')
+
+
+np.unique(iris[:,4],return_counts=True)
+
+############ assignments 40 :Bin the petal length (3rd) column of iris_2d to form a text array, such that if petal length is:
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+iris = np.genfromtxt(url, delimiter=',', dtype='object')
+names = ('sepallength', 'sepalwidth', 'petallength', 'petalwidth', 'species')
+
+
+solution 1 :
+
+# Bin petallength 
+petal_length_bin = np.digitize(iris[:, 2].astype('float'), [0, 3, 5, 10])
+
+# Map it to respective category
+label_map = {1: 'small', 2: 'medium', 3: 'large', 4: np.nan}
+petal_length_cat = [label_map[x] for x in petal_length_bin]
+
+# View
+petal_length_cat[:4]
+<#> ['small', 'small', 'small', 'small']
+
+solution 2 :  using vectorization
+    
+    def category(x) :
+         if x >=0 and x<=3:
+             return 'small'
+         elif x<=5:
+             return 'medium'
+         elif x > 5:
+             return 'large'
+         else :
+             return  np.nan
+         
+vec_cat=np.vectorize(category)
+ct_col=vec_cat(iris_2d[:,2])
+
+ct_col = ct_col[:, np.newaxis]
+
+
+
+iris_2d = np.hstack([iris_2d, ct_col])
+
+iris_2d
+
+
+
+
+ ##### assignment 41 :Create a new column for volume in iris_2d, where volume is (pi x petallength x sepal_length^2)/3
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+iris_2d = np.genfromtxt(url, delimiter=',', dtype='object')
+names = ('sepallength', 'sepalwidth', 'petallength', 'petalwidth', 'species')
+
+petallength = iris_2d[:, 2].astype('float')
+volume = (np.pi * petallength * (sepallength**2))/3
+
+# Introduce new dimension to match iris_2d's
+volume = volume[:, np.newaxis]
+
+# Add the new column
+out = np.hstack([iris_2d, volume])
+
+############### assignment 42 :Randomly sample iris's species such that setose is twice the number of versicolor and virginica
+
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+iris = np.genfromtxt(url, delimiter=',', dtype='object')
+
+np.random.seed(100)
+
+probs=np.r_[np.linspace(0,0.500,num=50),np.linspace(0.501,0.750,num=25),np.linspace(0.751,1.0,num=50)]
+index=np.searchsorted(probs,np.random.random(150))
+species_out=species[index]
+
+np.unique(iris[:,4])
+
+
+###Assignment 43 :What is the value of second longest petallength of species setosa
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+iris = np.genfromtxt(url, delimiter=',', dtype='object')
+names = ('sepallength', 'sepalwidth', 'petallength', 'petalwidth', 'species')
+
+
+petal_len_setosa = iris[iris[:, 4] == b'Iris-setosa'][:,-2].astype('float')
+
+
+
+np.unique(np.sort(petal_len_setosa))[-2]
+#assignment 44 :Sort the iris dataset based on sepallength column.
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+iris = np.genfromtxt(url, delimiter=',', dtype='object')
+names = ('sepallength', 'sepalwidth', 'petallength', 'petalwidth', 'species')
+
+iris[iris[:,0].argsort()]
+
+np.
+
+
+############3 assignment 45 :Find the most frequent value of petal length (3rd column) in iris dataset.
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+iris = np.genfromtxt(url, delimiter=',', dtype='object')
+names = ('sepallength', 'sepalwidth', 'petallength', 'petalwidth', 'species')
+
+
+iris[:,-2].unique[-1]
+vals,counts = np.unique(iris[:,-2],return_counts=True)
+
+print(vals[np.argmax(counts)])
+
+
+################# assignment 46 :Find the position of the first occurrence of a value greater than 1.0 in petalwidth 4th column of iris dataset.
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+iris = np.genfromtxt(url, delimiter=',', dtype='float')
+
+iris[iris[:,3] > 1.0][0]
+
+## alternate solution 
+
+np.argwhere(iris[:, 3].astype(float) > 1.0)[0]
+
+#### assignment 47 :From the array a, replace all values greater than 30 to 30 and less than 10 to 10.
+
+np.random.seed(100)
+a = np.random.uniform(1,50, 20)
+a[a>30] =30
+a[a<10] =10
+
+alternate solution :
+    print(np.where(a < 10, 10, np.where(a > 30, 30, a)))
+    
+    #### assignment 48 :Get the positions of top 5 maximum values in a given array a.
+
+np.random.seed(100)
+a = np.random.uniform(1,50, 20)
+
+np.where(a in np.sort(a)[np.arange(0,5)])
+
+np.sort(a)[np.arange(-1,-6)]
+
+# Method 2:
+np.sort(a)[-5:]
+
+# Method 3:
+np.partition(a, kth=-5)[-5:]
+
+# Method 4:
+a[np.argpartition(-a, 5)][:5]
+
+
+#assignment 49Compute the counts of unique values row-wise.
+
+np.random.seed(100)
+arr = np.random.randint(1,11,size=(6, 10))
+def counts_of_all_values_rowwise(arr2d):
+    # Unique values and its counts row wise
+    num_counts_array = [np.unique(row, return_counts=True) for row in arr2d]
+
+    # Counts of all values row wise
+    return([[int(b[a==i]) if i in a else 0 for i in np.unique(arr2d)] for a, b in num_counts_array])
+
+# Print
+print(np.arange(1,11))
+counts_of_all_values_rowwise(arr) 
+
+#### assignment 50 :Convert array_of_arrays into a flat linear 1d array.
+
+arr1 = np.arange(3)
+arr2 = np.arange(3,7)
+arr3 = np.arange(7,10)
+
+array_of_arrays = np.array([arr1, arr2, arr3])
+array_of_arrays
+#> array([array([0, 1, 2]), array([3, 4, 5, 6]), array([7, 8, 9])], dtype=object)
+
+arr_2d = np.concatenate(array_of_arrays)
 
 
 
