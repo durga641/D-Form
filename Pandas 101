@@ -1,0 +1,83 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Jan 29 18:26:12 2019
+
+@author: vuppuluri
+"""
+
+import pandas as pd
+import numpy as np
+
+## assignment 1 :How to import pandas and check the version?
+
+import pandas as pd
+print(pd.__version__)
+
+#### assignment 2 :Create a pandas series from each of the items below: a list, numpy and a dictionary
+
+mylist = list('abcedfghijklmnopqrstuvwxyz')
+myarr = np.arange(26)
+mydict = dict(zip(mylist, myarr))
+
+a=pd.Series(mylist)
+b=pd.Series(myarr)
+c=pd.Series(mydict)
+
+###Assignment :Convert the series ser into a dataframe with its index as another column on the dataframe.
+
+mylist = list('abcedfghijklmnopqrstuvwxyz')
+myarr = np.arange(26)
+mydict = dict(zip(mylist, myarr))
+ser = pd.Series(mydict)
+
+df=pd.DataFrame(ser,index=False)
+ser.to_frame()
+
+
+####### asssignment 4 :How to combine many series to form a dataframe?
+
+import numpy as np
+ser1 = pd.Series(list('abcedfghijklmnopqrstuvwxyz'))
+ser2 = pd.Series(np.arange(26))
+
+df=pd.DataFrame(pd.concat([ser1,ser2],axis=1))
+
+######## asssingment 5 :Give a name to the series ser calling it ‘alphabets’.### CHECK AGAIN
+
+ser = pd.Series(list('abcedfghijklmnopqrstuvwxyz'))
+
+
+#### assignment 6 :From ser1 remove items present in ser2.
+
+ser1 = pd.Series([1, 2, 3, 4, 5])
+ser2 = pd.Series([4, 5, 6, 7, 8])
+
+np.setdiff1d(ser1,ser2)
+ser1[~ser1.isin(ser2)]
+
+### asssingment 7 :Get all items of ser1 and ser2 not common to both.
+
+ser1 = pd.Series([1, 2, 3, 4, 5])
+ser2 = pd.Series([4, 5, 6, 7, 8])
+
+pd.concat([ser1[~ser1.isin(ser2)],ser2[~ser2.isin(ser1)]])
+
+########## assignment 8 :ompute the minimum, 25th percentile, median, 75th, and maximum of ser.ompute the minimum, 25th percentile, median, 75th, and maximum of ser.
+
+ser = pd.Series(np.random.normal(10, 5, 25))
+
+ser.min()
+np.percentile(ser,25)
+np.median(ser)
+np.percentile(ser,75)
+ser.max()
+
+#### assignment 9 :Calculte the frequency counts of each unique value ser.
+
+ser = pd.Series(np.take(list('abcdefgh'), np.random.randint(8, size=30)))
+ser.value_counts()
+
+##assingment 10 :From ser, keep the top 2 most frequent items as it is and replace everything else as ‘Other’.
+
+np.random.RandomState(100)
+ser = pd.Series(np.random.randint(1, 5, [12]))
