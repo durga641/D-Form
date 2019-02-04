@@ -1,0 +1,5 @@
+iteration :
+
+iteritems() − to iterate over the (key,value) pairs
+iterrows() − iterate over the rows as (index,series) pairs
+itertuples() − iterate over the rows as namedtuples
