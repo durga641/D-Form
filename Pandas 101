@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 """
 Created on Tue Jan 29 18:26:12 2019
@@ -7,6 +8,8 @@ Created on Tue Jan 29 18:26:12 2019
 
 import pandas as pd
 import numpy as np
+from collections import Counter 
+import math
 
 ## assignment 1 :How to import pandas and check the version?
 
@@ -158,8 +161,53 @@ for key in ser:
         a-b
         print(ser.diff().tolist())
 print(ser.diff().diff().tolist())
+
+######## assignment 21 :
+
+########### asssignment 22 :
+
+############## assignment 23 :
+
+###############3 assignment 24 :
+ser = pd.Series(['Apple', 'Orange', 'Plan', 'Python', 'Money'])
+
+mask = ser.map(lambda x: sum([Counter(x.lower()).get(i, 0) for i in list('aeiou')]) >= 2)
+ser[mask]
         
-        
-        
+######  assignment 25 :Extract the valid emails from the series emails. The regex pattern for valid emails is provided as reference.
+
+emails = pd.Series(['buying books at amazom.com', 'rameses@egypt.com', 'matt@t.co', 'narendra@modi.com'])
+pattern ='[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}'
+
+
+################ assignment 26 :Compute the mean of weights of each fruit.
+
+fruit = pd.Series(np.random.choice(['apple', 'banana', 'carrot'], 10))
+weights = pd.Series(np.linspace(1, 10, 10))
+print(weights.tolist())
+print(fruit.tolist())
+
+fr_wt=pd.concat([fruit,weights],axis=1)
+fr_wt.groupby(0).mean()
+alternate solution :
+    weights.groupby(fruits).mean()
+
+###### assignment 27 :Compute the euclidean distance between series (points) p and q, without using a packaged formula.
+    
+    p = pd.Series([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+q = pd.Series([10, 9, 8, 7, 6, 5, 4, 3, 2, 1])
+
+euc_dist=math.sqrt(sum((p-q)**2))
+
+############### assignment 28 :Get the positions of peaks (values surrounded by smaller values on both sides) in ser.
+
+ser = pd.Series([2, 10, 3, 4, 9, 10, 2, 7, 3])
+
+np.diff(np.sign(np.diff(ser)))
+
+
+
+
+
 
 
